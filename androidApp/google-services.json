@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "255068244290",
+    "project_id": "chirp-b3a7b",
+    "storage_bucket": "chirp-b3a7b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255068244290:android:875c952abf657eeeb3e0db",
+        "android_client_info": {
+          "package_name": "com.bavly.chirp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIO4hLEw1RXNG09bpk5ie6_VrxPl3s-uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

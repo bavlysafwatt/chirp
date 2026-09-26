@@ -23,6 +23,14 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.bavly.chirp"
             packageVersion = "1.0.0"
+
+            windows {
+                iconFile.set(project.file("src/main/resources/logo.ico"))
+            }
+
+            linux {
+                iconFile.set(project.file("src/main/resources/logo.png"))
+            }
         }
     }
 }
