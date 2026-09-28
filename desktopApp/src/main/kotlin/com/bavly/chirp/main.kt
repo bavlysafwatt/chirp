@@ -6,6 +6,7 @@ import androidx.compose.ui.window.application
 import com.bavly.chirp.di.initKoin
 
 fun main() {
+    initializeFirebaseDesktop()
     initKoin()
 
     application {

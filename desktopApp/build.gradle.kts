@@ -13,6 +13,9 @@ dependencies {
     implementation(libs.kotlinx.coroutinesSwing)
 
     implementation(libs.compose.uiToolingPreview)
+
+    implementation(libs.firebase.common)
+    implementation(libs.firebase.auth)
 }
 
 compose.desktop {
