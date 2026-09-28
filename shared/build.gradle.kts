@@ -70,6 +70,9 @@ kotlin {
 
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
+
+            implementation(libs.material3.adaptive)
+            implementation(libs.jetbrains.compose.material.icons.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
