@@ -36,4 +36,47 @@
     <string name="error_no_internet">Unable to connect. Please check your internet connection.</string>
     <string name="error_not_signed_in">Please log in again to do that</string>
     <string name="error_unknown">An unknown error happened</string>
+
+    <string name="error_unauthenticated">Please log in again to do that</string>
+    <string name="error_permission_denied">You\'re not allowed to do that</string>
+    <string name="error_not_found">Couldn\'t find the requested item</string>
+    <string name="error_already_exists">That already exists</string>
+    <string name="error_quota_exceeded">You\'ve hit the rate limit. Please try again later</string>
+
+    <string name="create_chat">Create Chat</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="email_or_username">Email or username</string>
+    <string name="group_chat">Group chat</string>
+    <string name="you">You</string>
+    <string name="logout">Logout</string>
+    <string name="sending">Sending...</string>
+    <string name="sent">Sent</string>
+    <string name="retry">Retry</string>
+    <string name="failed">Failed</string>
+    <string name="save">Save</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="only_you">Only you</string>
+    <string name="today_x">Today, %1$s</string>
+    <string name="yesterday_x">Yesterday, %1$s</string>
+    <string name="no_chat_selected">No chat selected</string>
+    <string name="select_a_chat">Select a chat to start chatting!</string>
+    <string name="open_chat_options_menu">Open chat options menu</string>
+    <string name="chat_members">Chat members</string>
+    <string name="leave_chat">Leave chat</string>
+    <string name="go_back">Go back</string>
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="send_a_message">Send a message</string>
+    <string name="send">Send</string>
+    <string name="delete_for_everyone">Delete for everyone</string>
+    <string name="no_chats">No chats</string>
+    <string name="no_chats_subtitle">Create new chat to start messaging</string>
+    <string name="no_messages">No messages</string>
+    <string name="no_messages_subtitle">Be the first one to send a message!</string>
+    <string name="do_you_want_to_logout">Do you want to log out?</string>
+    <string name="do_you_want_to_logout_desc">You will have to log in again to use the app.</string>
+    <string name="error_participant_not_found">No participant found</string>
+    <string name="profile_settings">Profile settings</string>
 </resources>

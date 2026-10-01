@@ -3,13 +3,13 @@ package com.bavly.chirp.features.auth.data.repository
 import com.bavly.chirp.core.domain.util.ChirpLogger
 import com.bavly.chirp.core.domain.util.EmptyResult
 import com.bavly.chirp.core.domain.util.Result
+import com.bavly.chirp.core.domain.validation.UsernameValidator
 import com.bavly.chirp.core.platform.requiresEmailVerification
 import com.bavly.chirp.features.auth.data.dto.UserDocument
 import com.bavly.chirp.features.auth.data.dto.UsernameClaimDocument
 import com.bavly.chirp.features.auth.domain.model.AuthError
 import com.bavly.chirp.features.auth.domain.model.AuthUser
 import com.bavly.chirp.features.auth.domain.repository.AuthRepository
-import com.bavly.chirp.features.auth.domain.validation.UsernameValidator
 import dev.gitlive.firebase.FirebaseNetworkException
 import dev.gitlive.firebase.FirebaseTooManyRequestsException
 import dev.gitlive.firebase.auth.FirebaseAuth

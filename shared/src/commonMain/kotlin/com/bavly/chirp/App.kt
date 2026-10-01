@@ -10,7 +10,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -19,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
 import com.bavly.chirp.core.designsystem.theme.ChirpTheme
-import com.bavly.chirp.core.presentation.util.ObserveAsEvents
 import com.bavly.chirp.navigation.AuthGraphRoutes
 import com.bavly.chirp.navigation.ChatGraphRoutes
 import com.bavly.chirp.navigation.NavigationRoot
@@ -38,24 +36,11 @@ fun App(
         if (!state.isCheckingAuth) onAuthenticationChecked()
     }
 
-    ObserveAsEvents(viewModel.events) { event ->
-        when (event) {
-            MainEvent.OnSessionEnded -> {
-                navController.navigate(AuthGraphRoutes.Graph) {
-                    popUpTo(ChatGraphRoutes.Graph) { inclusive = true }
-                }
-            }
-        }
-    }
-
     ChirpTheme(darkTheme = isDarkTheme) {
         if (!state.isCheckingAuth) {
-            val startDestination: Any = remember {
-                if (state.isLoggedIn) ChatGraphRoutes.Graph else AuthGraphRoutes.Graph
-            }
             NavigationRoot(
                 navController = navController,
-                startDestination = startDestination
+                startDestination = if (state.isLoggedIn) ChatGraphRoutes.Graph else AuthGraphRoutes.Graph
             )
         } else {
             Box(

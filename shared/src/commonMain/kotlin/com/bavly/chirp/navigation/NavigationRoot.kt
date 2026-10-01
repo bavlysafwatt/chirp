@@ -3,7 +3,6 @@ package com.bavly.chirp.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 
 @Composable
 fun NavigationRoot(
@@ -22,8 +21,13 @@ fun NavigationRoot(
                 }
             }
         )
-        composable<ChatGraphRoutes.Graph> {
-            PlaceholderHomeScreen()
-        }
+        chatGraph(
+            navController = navController,
+            onLogout = {
+                navController.navigate(AuthGraphRoutes.Graph) {
+                    popUpTo(ChatGraphRoutes.Graph) { inclusive = true }
+                }
+            }
+        )
     }
 }

@@ -10,11 +10,11 @@ import chirp.shared.generated.resources.error_invalid_username
 import com.bavly.chirp.core.domain.util.onFailure
 import com.bavly.chirp.core.domain.util.onSuccess
 import com.bavly.chirp.core.domain.validation.PasswordValidator
+import com.bavly.chirp.core.domain.validation.UsernameValidator
 import com.bavly.chirp.core.presentation.util.UiText
 import com.bavly.chirp.features.auth.domain.model.AuthError
 import com.bavly.chirp.features.auth.domain.repository.AuthRepository
 import com.bavly.chirp.features.auth.domain.validation.EmailValidator
-import com.bavly.chirp.features.auth.domain.validation.UsernameValidator
 import com.bavly.chirp.features.auth.presentation.util.toUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

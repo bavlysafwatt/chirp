@@ -75,6 +75,11 @@ kotlin {
             implementation(libs.jetbrains.compose.material.icons.core)
 
             implementation(libs.jetbrains.lifecycle.viewmodel.savedstate)
+
+            implementation(libs.material3.adaptive.layout)
+            implementation(libs.material3.adaptive.navigation)
+            implementation(libs.jetbrains.compose.backhandler)
+            implementation(libs.kotlinx.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
