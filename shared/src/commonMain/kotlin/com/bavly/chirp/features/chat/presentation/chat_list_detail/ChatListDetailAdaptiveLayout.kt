@@ -23,6 +23,7 @@ import com.bavly.chirp.features.chat.presentation.chat_detail.ChatDetailRoot
 import com.bavly.chirp.features.chat.presentation.chat_list.ChatListRoot
 import com.bavly.chirp.features.chat.presentation.create_chat.CreateChatRoot
 import com.bavly.chirp.features.chat.presentation.manage_chat.ManageChatRoot
+import com.bavly.chirp.features.profile.presentation.ProfileRoot
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -75,7 +76,9 @@ fun ChatListDetailAdaptiveLayout(
                     onCreateChatClick = {
                         chatListDetailViewModel.onAction(ChatListDetailAction.OnCreateChatClick)
                     },
-                    onProfileSettingsClick = { /* Phase 5 */ },
+                    onProfileSettingsClick = {
+                        chatListDetailViewModel.onAction(ChatListDetailAction.OnProfileSettingsClick)
+                    },
                 )
             }
         },
@@ -105,6 +108,12 @@ fun ChatListDetailAdaptiveLayout(
                 chatListDetailViewModel.onAction(ChatListDetailAction.OnSelectChat(chat.id))
                 scope.launch { scaffoldNavigator.navigateTo(ListDetailPaneScaffoldRole.Detail) }
             },
+            onDismiss = { chatListDetailViewModel.onAction(ChatListDetailAction.OnDismissCurrentDialog) }
+        )
+    }
+
+    if (sharedState.dialogState is DialogState.Profile) {
+        ProfileRoot(
             onDismiss = { chatListDetailViewModel.onAction(ChatListDetailAction.OnDismissCurrentDialog) }
         )
     }

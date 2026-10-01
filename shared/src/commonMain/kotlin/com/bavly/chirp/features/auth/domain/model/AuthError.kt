@@ -10,5 +10,6 @@ enum class AuthError : Error {
     TOO_MANY_REQUESTS,
     NO_INTERNET,
     NOT_SIGNED_IN,
+    REQUIRES_RECENT_LOGIN,
     UNKNOWN
 }

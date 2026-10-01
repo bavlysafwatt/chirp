@@ -6,6 +6,7 @@ import chirp.shared.generated.resources.error_email_not_verified
 import chirp.shared.generated.resources.error_invalid_credentials
 import chirp.shared.generated.resources.error_no_internet
 import chirp.shared.generated.resources.error_not_signed_in
+import chirp.shared.generated.resources.error_requires_recent_login
 import chirp.shared.generated.resources.error_too_many_requests
 import chirp.shared.generated.resources.error_unknown
 import chirp.shared.generated.resources.error_username_taken
@@ -22,6 +23,7 @@ fun AuthError.toUiText(): UiText {
         AuthError.TOO_MANY_REQUESTS -> Res.string.error_too_many_requests
         AuthError.NO_INTERNET -> Res.string.error_no_internet
         AuthError.NOT_SIGNED_IN -> Res.string.error_not_signed_in
+        AuthError.REQUIRES_RECENT_LOGIN -> Res.string.error_requires_recent_login
         AuthError.UNKNOWN -> Res.string.error_unknown
     }
     return UiText.Resource(resource)

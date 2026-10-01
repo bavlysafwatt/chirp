@@ -35,13 +35,14 @@
     <string name="error_too_many_requests">Too many attempts. Please try again later</string>
     <string name="error_no_internet">Unable to connect. Please check your internet connection.</string>
     <string name="error_not_signed_in">Please log in again to do that</string>
+    <string name="error_requires_recent_login">For security, please log out and back in, then try again</string>
     <string name="error_unknown">An unknown error happened</string>
 
     <string name="error_unauthenticated">Please log in again to do that</string>
-    <string name="error_permission_denied">You\'re not allowed to do that</string>
-    <string name="error_not_found">Couldn\'t find the requested item</string>
+    <string name="error_permission_denied">You're not allowed to do that</string>
+    <string name="error_not_found">Couldn't find the requested item</string>
     <string name="error_already_exists">That already exists</string>
-    <string name="error_quota_exceeded">You\'ve hit the rate limit. Please try again later</string>
+    <string name="error_quota_exceeded">You've hit the rate limit. Please try again later</string>
 
     <string name="create_chat">Create Chat</string>
     <string name="add">Add</string>
@@ -79,4 +80,9 @@
     <string name="do_you_want_to_logout_desc">You will have to log in again to use the app.</string>
     <string name="error_participant_not_found">No participant found</string>
     <string name="profile_settings">Profile settings</string>
+
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="contact_chirp_support_change_email">Contact the Chirp support to change your email.</string>
+    <string name="password_change_successful">You've successfully changed your password!</string>
 </resources>

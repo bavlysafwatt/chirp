@@ -12,6 +12,7 @@ import com.bavly.chirp.features.auth.domain.model.AuthUser
 import com.bavly.chirp.features.auth.domain.repository.AuthRepository
 import dev.gitlive.firebase.FirebaseNetworkException
 import dev.gitlive.firebase.FirebaseTooManyRequestsException
+import dev.gitlive.firebase.auth.EmailAuthProvider
 import dev.gitlive.firebase.auth.FirebaseAuth
 import dev.gitlive.firebase.auth.FirebaseAuthInvalidCredentialsException
 import dev.gitlive.firebase.auth.FirebaseAuthInvalidUserException
@@ -163,6 +164,24 @@ class FirebaseAuthRepository(
         }
     }
 
+    override suspend fun changePassword(
+        currentPassword: String,
+        newPassword: String
+    ): EmptyResult<AuthError> {
+        val user = auth.currentUser ?: return Result.Failure(AuthError.NOT_SIGNED_IN)
+        val email = user.email ?: return Result.Failure(AuthError.NOT_SIGNED_IN)
+
+        return try {
+            val credential = EmailAuthProvider.credential(email, currentPassword)
+            user.reauthenticate(credential)
+            user.updatePassword(newPassword)
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            currentCoroutineContext().ensureActive()
+            Result.Failure(e.toAuthError())
+        }
+    }
+
     override suspend fun logout() {
         auth.signOut()
     }
@@ -175,22 +194,16 @@ class FirebaseAuthRepository(
     }
 
     private fun Throwable.toAuthError(): AuthError {
-        return when (this) {
-            is FirebaseAuthInvalidCredentialsException,
-            is FirebaseAuthInvalidUserException ->
+        val description = message.orEmpty().lowercase()
+        return when {
+            this is FirebaseAuthInvalidCredentialsException || this is FirebaseAuthInvalidUserException ->
                 AuthError.INVALID_CREDENTIALS
 
-            is FirebaseAuthUserCollisionException ->
-                AuthError.EMAIL_ALREADY_IN_USE
-
-            is FirebaseNetworkException ->
-                AuthError.NO_INTERNET
-
-            is FirebaseTooManyRequestsException ->
-                AuthError.TOO_MANY_REQUESTS
-
-            else ->
-                AuthError.UNKNOWN
+            this is FirebaseAuthUserCollisionException -> AuthError.EMAIL_ALREADY_IN_USE
+            this is FirebaseNetworkException -> AuthError.NO_INTERNET
+            this is FirebaseTooManyRequestsException -> AuthError.TOO_MANY_REQUESTS
+            description.contains("recent") -> AuthError.REQUIRES_RECENT_LOGIN
+            else -> AuthError.UNKNOWN
         }
     }
 

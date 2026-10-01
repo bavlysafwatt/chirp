@@ -20,6 +20,10 @@ class ChatListDetailViewModel : ViewModel() {
                 _state.update { it.copy(dialogState = DialogState.CreateChat) }
             }
 
+            ChatListDetailAction.OnProfileSettingsClick -> {
+                _state.update { it.copy(dialogState = DialogState.Profile) }
+            }
+
             ChatListDetailAction.OnDismissCurrentDialog -> {
                 _state.update { it.copy(dialogState = DialogState.Hidden) }
             }

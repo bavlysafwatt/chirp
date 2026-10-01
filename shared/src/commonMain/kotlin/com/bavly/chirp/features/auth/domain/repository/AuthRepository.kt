@@ -12,5 +12,6 @@ interface AuthRepository {
     suspend fun login(email: String, password: String): EmptyResult<AuthError>
     suspend fun resendVerificationEmail(): EmptyResult<AuthError>
     suspend fun sendPasswordResetEmail(email: String): EmptyResult<AuthError>
+    suspend fun changePassword(currentPassword: String, newPassword: String): EmptyResult<AuthError>
     suspend fun logout()
 }

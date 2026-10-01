@@ -8,5 +8,6 @@ data class ChatListDetailState(
 sealed interface DialogState {
     data object Hidden : DialogState
     data object CreateChat : DialogState
+    data object Profile : DialogState
     data class ManageChat(val chatId: String) : DialogState
 }
