@@ -9,8 +9,6 @@ Chirp is a Kotlin Multiplatform chat app targeting **Android, iOS, and Desktop (
 - **Chat** — adaptive chat list / detail layout, create chat, manage chat (participants, leave),
   realtime messages, send / delete / retry, connection-state handling.
 - **Profile** — view/edit profile.
-- **Shared design system** — `Chirp*` components, theme, and multiplatform resources under
-  `shared/src/commonMain`.
 
 ## Tech stack
 
