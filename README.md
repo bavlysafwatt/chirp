@@ -1,35 +1,48 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
+# Chirp
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Chirp is a Kotlin Multiplatform chat app targeting **Android, iOS, and Desktop (JVM)**.
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## Features
 
-### Running the apps
+- **Auth** — login, registration, registration-success, forgot password; session check on launch
+  gates the nav graph.
+- **Chat** — adaptive chat list / detail layout, create chat, manage chat (participants, leave),
+  realtime messages, send / delete / retry, connection-state handling.
+- **Profile** — view/edit profile.
+- **Shared design system** — `Chirp*` components, theme, and multiplatform resources under
+  `shared/src/commonMain`.
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## Tech stack
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+- Kotlin 2.4.20, Compose Multiplatform 1.12.1, AGP 9.1.1
+- `compileSdk` / `targetSdk` 37, `minSdk` 24, JVM target 17
+- Navigation-Compose (type-safe routes), Koin (DI), Coil 3 + Ktor, kotlinx.serialization /
+  datetime / coroutines
+- Backend: GitLive Firebase KMP (`firebase-auth`, `firestore`, `storage`, `messaging`) behind
+  `core/data/firebase/FirebaseClients`
 
-### Running tests
+## Project structure
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+- `shared/src/commonMain` — everything shared: `App.kt`, `navigation/` (`NavigationRoot`,
+  `authGraph`, `chatGraph`), `features/{auth,chat,profile}/` (each: `data/` DTOs +
+  `Firestore*Repository`, `domain/` interfaces + models, `presentation/<screen>/`
+  Screen/State/Action/Event/ViewModel, `di/*Module.kt`), `core/` (`data`, `di`, `designsystem`,
+  `domain`, `platform`, `presentation/util`).
+- `shared` source sets — `androidMain`, `jvmMain`, `iosMain`, `nativeMain` for platform code /
+  `expect`/`actual` (e.g. `core/platform/requiresEmailVerification`); tests in `commonTest`,
+  `androidHostTest`, `jvmTest`, `iosTest`.
+- `androidApp/` — `MainActivity` + `ChirpApplication` (calls `initKoin` with `androidContext`).
+- `desktopApp/` — `main.kt` + `DesktopFirebase.kt` (calls `initializeFirebaseDesktop()` **before**
+  `initKoin()`).
+- `iosApp/` — Xcode entry point; shared builds a static `Shared` framework (`iosArm64`,
+  `iosSimulatorArm64`). Swift entry calls through `MainViewController.kt`.
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- Desktop tests: `./gradlew :shared:jvmTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+## Running the apps
 
----
+Use IDE run configurations or Gradle:
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- Android: `./gradlew :androidApp:assembleDebug` (PowerShell:
+  `./gradlew.bat :androidApp:assembleDebug`)
+- Desktop standard run: `./gradlew :desktopApp:run`
+- Desktop hot reload: `./gradlew :desktopApp:hotRun --auto`
+- iOS: open `iosApp/` in Xcode and run from there.
